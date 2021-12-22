@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Modal from "./components/Modal";
 import ListadoGastos from "./components/ListadoGastos";
@@ -11,6 +11,10 @@ function App() {
   const [modal, setModal] = useState(false);
   const [animarModal, setAnimarModal] = useState(false);
   const [gastos, setGastos] = useState([]);
+
+  const [gastoEditar, setGastoEditar] = useState({});
+
+  useEffect(() => {}, [gastoEditar]);
 
   const handleNuevoGasto = () => {
     setModal(true);
@@ -42,7 +46,7 @@ function App() {
       {isValidPresupuesto && (
         <>
           <main>
-            <ListadoGastos gastos={gastos} />
+            <ListadoGastos gastos={gastos} setGastoEditar={setGastoEditar} />
           </main>
           <div className="nuevo-gasto">
             <img
